@@ -3,14 +3,14 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Salary extends BaseModel
 {
     use HasFactory;
 
-    public function department(): BelongsTo
+    public function departments(): HasMany
     {
-        return $this->belongsTo(Department::class);
+        return $this->hasMany(Department::class);
     }
 }
