@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API\FolderController;
 use App\Http\Controllers\API\LoginController;
+use App\Http\Controllers\API\NoteController;
 use App\Http\Controllers\API\RegisterController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -27,4 +28,7 @@ Route::post('register', RegisterController::class)->middleware('guest:api');
 
 // Folder
 Route::resource('folders', FolderController::class)->except(['create', 'edit', 'show', 'update', 'destroy']);
+
+// Note
+Route::resource('notes', NoteController::class)->except(['create', 'edit', 'show', 'update', 'destroy']);
 

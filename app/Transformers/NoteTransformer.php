@@ -2,12 +2,10 @@
 
 namespace App\Transformers;
 
-use App\Models\Folder;
-use App\Transformers\NoteTransformer;
-use App\Transformers\UserTransformer;
+use App\Models\Note;
 use Flugg\Responder\Transformers\Transformer;
 
-class FolderTransformer extends Transformer
+class NoteTransformer extends Transformer
 {
     /**
      * List of available relations.
@@ -16,7 +14,7 @@ class FolderTransformer extends Transformer
      */
     protected $relations = [
         'user' => UserTransformer::class,
-        'notes' => NoteTransformer::class,
+        'folder' => FolderTransformer::class,
     ];
 
     /**
@@ -29,14 +27,16 @@ class FolderTransformer extends Transformer
     /**
      * Transform the model.
      *
-     * @param  \App\Models\Folder  $folder
+     * @param  \App\Models\Note  $note
      * @return array
      */
-    public function transform(Folder $folder)
+    public function transform(Note $note)
     {
         return [
-            'id' => $folder->id,
-            'name' => $folder->getName(),
+            'id' => $note->id,
+            'name' => $note->getName(),
+            'content' => $note->getContent(),
+            'type' => $note->getType(),
         ];
     }
 }
