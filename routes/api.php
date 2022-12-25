@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\FolderController;
 use App\Http\Controllers\API\LoginController;
 use App\Http\Controllers\API\RegisterController;
 use Illuminate\Http\Request;
@@ -23,3 +24,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 // Auth
 Route::post('login', LoginController::class)->middleware('guest:api');
 Route::post('register', RegisterController::class)->middleware('guest:api');
+
+// Folder
+Route::resource('folders', FolderController::class)->except(['create', 'edit', 'show', 'update', 'destroy']);
+

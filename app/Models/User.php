@@ -6,6 +6,7 @@ namespace App\Models;
 
 use App\Transformers\V1\UserTransformer;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
@@ -58,6 +59,11 @@ class User extends Authenticatable
     public function getToken(): string
     {
         return $this->createToken(env('APP_NAME'))->accessToken;
+    }
+
+    public function folders(): HasMany
+    {
+        return $this->hasMany(Folder::class);
     }
 
     /**
