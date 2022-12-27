@@ -3,7 +3,12 @@ This is Laravel 9.
 
 ## Screenshots
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![App Screenshot](https://github.com/BNhashem16/mazady/blob/master/files/image.png?raw=true)
+
+
+![App Screenshot](https://github.com/BNhashem16/mazady/blob/master/files/image1.png?raw=true)
+
+
 
 # How to use
 1. Clone this project
