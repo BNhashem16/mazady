@@ -24,7 +24,8 @@ class Department extends BaseModel
 
     public function employees(): BelongsToMany
     {
-        return $this->belongsToMany(Employee::class)->withTimestamps();
+        return $this->belongsToMany(Employee::class)->withTimestamps()->withPivot('order')
+        ->orderByPivot('order', 'asc');
     }
 
     public function salary(): BelongsTo

@@ -15,13 +15,6 @@ class UserTransformer extends Transformer
     protected $relations = [];
 
     /**
-     * List of autoloaded default relations.
-     *
-     * @var array
-     */
-    protected $load = [];
-
-    /**
      * Transform the model.
      *
      * @param  \App\Models\User  $user

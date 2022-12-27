@@ -18,8 +18,8 @@ class DepartmentFactory extends Factory
     public function definition()
     {
         return [
-            'salary_id' => Salary::factory()->create()->id,
-            'name' => 'Department of ' . fake()->jobTitle(),
+            // 'salary_id' => Salary::all()->random()->id,
+            'name' => 'Department of '.fake()->jobTitle(),
             'description' => fake()->paragraph(),
             'location' => fake()->city(),
             'phone' => fake()->phoneNumber(),

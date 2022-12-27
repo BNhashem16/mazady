@@ -2,85 +2,32 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Employee;
 use App\Http\Requests\StoreEmployeeRequest;
 use App\Http\Requests\UpdateEmployeeRequest;
+use App\Models\Department;
+use App\Models\Employee;
+use App\Models\Salary;
+use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class EmployeeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function index(Request $request): View
     {
-        //
+        // get highest salary of employees
+        $employees = Employee::orderByDesc(Department::select('salary_id')->whereColumn('departments.employee_id', 'employees.id')->limit(1))
+        // with('departments')
+
+        // $employees = Employee::with('departments');
+        // ->dd();
+        // dd($employees);
+        // $request->highest
+        // $employees = Employee::when(
+        //     $request->filled('name'),
+        //     fn ($query) => $query->where('name', 'like', "%{$request->name}%")
+            ->paginate($request->highest);
+
+        return view('welcome', ['employees' => $employees]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreEmployeeRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StoreEmployeeRequest $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Employee  $employee
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Employee $employee)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Employee  $employee
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Employee $employee)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateEmployeeRequest  $request
-     * @param  \App\Models\Employee  $employee
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateEmployeeRequest $request, Employee $employee)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Employee  $employee
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Employee $employee)
-    {
-        //
-    }
 }

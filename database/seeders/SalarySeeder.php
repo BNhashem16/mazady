@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\Department;
 use App\Models\Salary;
 use Illuminate\Database\Seeder;
 
@@ -15,6 +14,10 @@ class SalarySeeder extends Seeder
      */
     public function run()
     {
-        $salary = Salary::factory(10)->create();
+        // Salary::create([
+        //     'amount' => 500,
+        // ]);
+
+
     }
 }

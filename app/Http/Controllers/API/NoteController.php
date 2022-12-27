@@ -14,11 +14,6 @@ class NoteController extends Controller
         $this->middleware('auth:api')->only('store', 'index');
     }
     
-    public function index()
-    {
-        //
-    }
-    
     public function store(StoreNoteRequest $request)
     {
         $note = Note::create($request->validated());

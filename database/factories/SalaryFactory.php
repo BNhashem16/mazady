@@ -17,7 +17,7 @@ class SalaryFactory extends Factory
     public function definition()
     {
         return [
-            'amount' => fake()->numberBetween(1000, 10000),
+            // 'amount' => fake()->numberBetween(1000, 10000),
         ];
     }
 }
