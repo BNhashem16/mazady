@@ -1,6 +1,10 @@
 # About Project
 This is Laravel 9.
 
+## Screenshots
+
+![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+
 # How to use
 1. Clone this project
 2. Run `composer install`
