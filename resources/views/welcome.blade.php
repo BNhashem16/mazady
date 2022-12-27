@@ -31,7 +31,8 @@
                             @csrf
                             <div class="mb-3">
                                 <label class="form-label text-muted">Level of Heighest Salary</label>
-                                <input type="number" min="5" max="50" name="highest" value="{{ request()->highest }}" class="form-control">
+                                <input type="number" min="1" max="50" name="highest"
+                                    value="{{ request()->highest }}" class="form-control">
                             </div>
 
                             <div class="mb-3">
@@ -49,7 +50,6 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th scope="col">#</th>
                             <th scope="col">Name</th>
                             <th scope="col">Departments</th>
                             <th scope="col">Heighest Salary</th>
@@ -58,40 +58,15 @@
                     <tbody>
                         @foreach ($employees as $key => $employee)
                             <tr>
-                                <td>{{ $key + 1 }}</td>
-                                <td>{{ $employee->name }}</td>
-
-                                {{-- @dd($employee->getDepartmentsOrderedByAmount()) --}}
-                                <td>
-                                    @foreach ($employee->getDepartmentsOrderedByAmount() as $department)
-                                        {{-- show department and his salary --}}
-                                        {{-- <p>{{ $department->name }} : {{ $department->salary->amount }}</p> --}}
-                                        <table class="table table-secondary table-striped-columns">
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col">Department</th>
-                                                    <th class="text-center">Salary</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>{{ $department->name }}</td>
-                                                    <td class="text-center">{{ $department->salary->amount }}</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    @endforeach
-
-                                </td>
-                                <td>{{ $employee->getHighestSalary() }}</td>
-
+                                <td>{{ $employee['employee'] }}</td>
+                                <td>{{ $employee['department'] }}</td>
+                                <td>{{ $employee['amount'] }}</td>
                             </tr>
                         @endforeach
 
                     </tbody>
                 </table>
             </div>
-
 
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
                 integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">

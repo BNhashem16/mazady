@@ -2,9 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Collection;
+use App\Models\BaseModel;
+use App\Models\Department;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Support\Collection;
 
 class Employee extends BaseModel
 {
@@ -31,10 +33,9 @@ class Employee extends BaseModel
 
     public function departments(): BelongsToMany
     {
-        return $this->belongsToMany(Department::class)->withTimestamps()->using(Salary::class)->withPivot('department_id');
+        return $this->belongsToMany(Department::class)->withTimestamps();
     }
 
-    // get all departments of employee ordered by amount
     public function getDepartmentsOrderedByAmount(): Collection
     {
         return $this->departments()->get()->groupBy('salary_id')->flatten(1);
@@ -49,4 +50,12 @@ class Employee extends BaseModel
     {
         return $this->getSalaries()->max();
     }
+
+    // salaries relation through departments
+    public function salaries(): BelongsToMany
+    {
+        return $this->belongsToMany(Department::class, 'department_employee', 'department_id', 'employee_id')->withTimestamps();
+    }
+    
+    
 }

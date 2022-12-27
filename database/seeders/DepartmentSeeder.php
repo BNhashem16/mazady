@@ -17,30 +17,13 @@ class DepartmentSeeder extends Seeder
     public function run()
     {
         // salaries
+        for ($i = 1; $i <= 30; $i++) {
+            $salary = 'salary'.$i;
+            $$salary = Salary::factory()->create([
+                'amount' => $i * 500,
+            ]);
+        }
 
-        $salary1 = Salary::create([
-            'amount' => 500,
-        ]);
-
-        $salary2 = Salary::create([
-            'amount' => 1000,
-        ]);
-
-        $salary3 = Salary::create([
-            'amount' => 1500,
-        ]);
-
-        $salary4 = Salary::create([
-            'amount' => 2000,
-        ]);
-
-        $salary5 = Salary::create([
-            'amount' => 2500,
-        ]);
-
-        $salary6 = Salary::create([
-            'amount' => 3000,
-        ]);
 
         $accountingDepartment = Department::factory()->count(1)->create([
             'name' => 'Accounting',
@@ -72,23 +55,44 @@ class DepartmentSeeder extends Seeder
             'salary_id' => $salary6->id,
         ]);
 
-        // employees
-        $employee1 = Employee::factory(1)->create([
-            'name' => 'John Doe',
+        $financeDepartment = Department::factory()->count(1)->create([
+            'name' => 'Finance',
+            'salary_id' => $salary7->id,
         ]);
 
-        $employee2 = Employee::factory(1)->create();
-        $employee3 = Employee::factory(1)->create();
-        $employee4 = Employee::factory(1)->create();
-        $employee5 = Employee::factory(1)->create();
-        $employee6 = Employee::factory(1)->create();
-        $employee7 = Employee::factory(1)->create();
-        $employee8 = Employee::factory(1)->create();
-        
+        $legalDepartment = Department::factory()->count(1)->create([
+            'name' => 'Legal',
+            'salary_id' => $salary8->id,
+        ]);
 
-        $accountingDepartment->each(function (Department $department) use ($employee1, $employee2) {
+        $customerServiceDepartment = Department::factory()->count(1)->create([
+            'name' => 'Customer Service',
+            'salary_id' => $salary9->id,
+        ]);
+
+        $operationsDepartment = Department::factory()->count(1)->create([
+            'name' => 'Operations',
+            'salary_id' => $salary10->id,
+        ]);
+
+        $researchAndDevelopmentDepartment = Department::factory()->count(1)->create([
+            'name' => 'Research and Development',
+            'salary_id' => $salary11->id,
+        ]);
+
+        for ($i = 1; $i <= 100; $i++) {
+            $employee = 'employee'.$i;
+            $$employee = Employee::factory()->create([
+                'name' => 'Employee '.$i,
+            ]);
+        }
+
+        $accountingDepartment->each(function (Department $department) use ($employee1, $employee2, $employee8, $employee20, $employee40) {
             $department->employees()->attach($employee1);
             $department->employees()->attach($employee2);
+            $department->employees()->attach($employee8);
+            $department->employees()->attach($employee20);
+            $department->employees()->attach($employee40);
         });
 
         $managementDepartment->each(function (Department $department) use ($employee1, $employee2) {
@@ -104,7 +108,7 @@ class DepartmentSeeder extends Seeder
             $department->employees()->attach($employee4);
             $department->employees()->attach($employee5);
         });
-        
+
         $itDepartment->each(function (Department $department) use ($employee6, $employee7) {
             $department->employees()->attach($employee6);
             $department->employees()->attach($employee7);
@@ -115,9 +119,16 @@ class DepartmentSeeder extends Seeder
             $department->employees()->attach($employee7);
             $department->employees()->attach($employee8);
         });
-        
 
-        
-        
+        $financeDepartment->each(function (Department $department) use ($employee9, $employee10, $employee11, $employee12, $employee13, $employee18, $employee19, $employee20) {
+            $department->employees()->attach($employee9);
+            $department->employees()->attach($employee10);
+            $department->employees()->attach($employee11);
+            $department->employees()->attach($employee12);
+            $department->employees()->attach($employee13);
+            $department->employees()->attach($employee18);
+            $department->employees()->attach($employee19);
+            $department->employees()->attach($employee20);
+        });
     }
 }
