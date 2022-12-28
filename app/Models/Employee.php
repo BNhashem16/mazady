@@ -56,6 +56,5 @@ class Employee extends BaseModel
     {
         return $this->belongsToMany(Department::class, 'department_employee', 'department_id', 'employee_id')->withTimestamps();
     }
-    
-    
+
 }

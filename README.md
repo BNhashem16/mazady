@@ -33,6 +33,7 @@ Note: you can Import instead of download
 # To Test Frontend
 1. run `php artisan serve`
 2. open `http://localhost:8000` in your browser
+3. open `http://localhost:8000/employees` in your browser
 
 # After Migration and Seed
 1. you will get 100 Employee in employees table
