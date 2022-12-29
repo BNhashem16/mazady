@@ -31,4 +31,5 @@ Route::resource('folders', FolderController::class)->except(['create', 'edit', '
 
 // Note
 Route::resource('notes', NoteController::class)->except(['create', 'edit', 'show', 'update', 'destroy']);
+Route::get('notes/pdf', [NoteController::class, 'generatePDF']);
 

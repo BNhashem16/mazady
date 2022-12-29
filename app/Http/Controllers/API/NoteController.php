@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\API\Note\StoreNoteRequest;
 use App\Models\Note;
 use App\Transformers\NoteTransformer;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use niklasravnsborg\LaravelPdf\Facades\Pdf;
 
 class NoteController extends Controller
 {
@@ -40,5 +42,16 @@ class NoteController extends Controller
         $note = Note::create($request->validated());
 
         return responder()->success($note, NoteTransformer::class)->meta(['message' => 'Note Created successfully!'])->respond(201);
+    }
+
+    public function generatePDF(Request $request)
+    {
+        $note = Note::where('id', $request->note_id)->first();
+        $path = 'document-'.$note->id.'.pdf';
+        $pdf = Pdf::loadView('pdf', ['note' => $note])->save($path);
+
+        return responder()->success()->meta([
+            'link' => url($path),
+            'message' => 'PDF Created successfully!', ])->respond(200);
     }
 }
