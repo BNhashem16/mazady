@@ -14,7 +14,7 @@ class FilterRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'highest' => ['required', 'integer', 'min:5', 'max:50'],
+            'highest' => ['nullable', 'integer', 'min:5', 'max:50'],
         ];
     }
 }
