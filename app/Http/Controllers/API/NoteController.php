@@ -46,7 +46,7 @@ class NoteController extends Controller
 
     public function generatePDF(Request $request)
     {
-        $note = Note::where('id', $request->note_id)->first();
+        $note = Note::where('id', $request->note_id)->firstOrFail();
         $path = 'document-'.$note->id.'.pdf';
         $pdf = Pdf::loadView('pdf', ['note' => $note])->save($path);
 
